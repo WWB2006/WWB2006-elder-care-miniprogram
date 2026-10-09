@@ -1,10 +1,12 @@
 /**
  * 路由表与跳转的单元测试。
- * 重点覆盖两个经典坑：
+ * 重点覆盖三个经典坑：
  * 1. navigateTo 跳 tabBar 页会失败 —— push 必须自动改用 switchTab；
- * 2. 页面栈达到 10 层后 navigateTo 静默失败 —— 必须退化为 redirectTo。
+ * 2. 页面栈达到 10 层后 navigateTo 静默失败 —— 必须退化为 redirectTo；
+ * 3. switchTab 不支持 query —— 传了参数必须告警而不是静默丢弃。
  */
 import { ROUTES, resolveHomeByRole, router } from '../../miniprogram/config/route'
+import { logger } from '../../miniprogram/utils/logger'
 import { wxMock } from '../setup/wx'
 
 /**
@@ -14,6 +16,7 @@ import { wxMock } from '../setup/wx'
 beforeEach(() => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ;(globalThis as any).getCurrentPages = () => []
+  jest.restoreAllMocks()
 })
 
 describe('resolveHomeByRole', () => {
@@ -22,12 +25,12 @@ describe('resolveHomeByRole', () => {
   })
 
   it('管理员在 adminInMiniProgram 关闭时回落首页（避免跳到不可用分包）', () => {
-    expect(resolveHomeByRole('admin')).toEqual({ key: 'home', query: { role: 'admin' } })
+    expect(resolveHomeByRole('admin')).toEqual({ key: 'home' })
   })
 
-  it('老人 / 家属带角色参数回首页', () => {
-    expect(resolveHomeByRole('elder')).toEqual({ key: 'home', query: { role: 'elder' } })
-    expect(resolveHomeByRole('family')).toEqual({ key: 'home', query: { role: 'family' } })
+  it('老人 / 家属回首页（角色由目标页从 userStore 读取，不经 query 传递）', () => {
+    expect(resolveHomeByRole('elder')).toEqual({ key: 'home' })
+    expect(resolveHomeByRole('family')).toEqual({ key: 'home' })
   })
 
   it('游客回首页', () => {
@@ -74,8 +77,27 @@ describe('router.switchTo / back', () => {
   })
 
   it('tab 页用 switchTab 且不带 query', () => {
+    const warn = jest.spyOn(logger, 'warn').mockImplementation(() => undefined)
     router.switchTo('order', { status: 'ALL' })
     expect(wxMock.switchTab).toHaveBeenCalledWith({ url: ROUTES.order })
+    warn.mockRestore()
+  })
+
+  it('向 tab 页传 query 时告警而不是静默丢弃（避免以后排查困难）', () => {
+    const warn = jest.spyOn(logger, 'warn').mockImplementation(() => undefined)
+    router.switchTo('order', { status: 'ALL' })
+    expect(warn).toHaveBeenCalledTimes(1)
+    const [tag, payload] = warn.mock.calls[0]
+    expect(tag).toBe('router.switchTab')
+    expect(payload).toMatchObject({ path: ROUTES.order, keys: ['status'] })
+    // 参数仍被忽略（switchTab 不支持 query），但已提示改用 appStore
+    expect(wxMock.switchTab).toHaveBeenCalledWith({ url: ROUTES.order })
+  })
+
+  it('向 tab 页传空值 query 时不告警（等价于没传）', () => {
+    const warn = jest.spyOn(logger, 'warn').mockImplementation(() => undefined)
+    router.switchTo('order', { status: '' })
+    expect(warn).not.toHaveBeenCalled()
   })
 
   it('没有上一页时 back 回首页', () => {

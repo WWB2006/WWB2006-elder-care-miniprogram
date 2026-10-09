@@ -1,0 +1,25 @@
+# 统一换行符策略。
+#
+# 背景：本仓库此前没有 .gitattributes，而 Git for Windows 默认 core.autocrlf=true，
+# 结果是「工作区 CRLF / 仓库 LF」的隐式转换。单人开发不会立刻出问题，但有两个隐患：
+#   1) 跨平台协作者（macOS / Linux）检出后文件被改写，产生大量无意义的 diff；
+#   2) 脚本类文件若被转成 CRLF，在 Node 下可能出现 shebang 解析问题。
+# 因此这里显式声明：仓库内一律 LF，检出时不做转换。
+* text=auto eol=lf
+
+# 二进制文件必须标记，否则 Git 会尝试按文本处理，可能损坏内容
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.xlsx binary
+*.docx binary
+
+# 微信开发者工具的本地私有配置与锁文件不参与版本控制
+project.private.config.json -text
+*.lock -text

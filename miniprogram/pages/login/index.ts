@@ -101,6 +101,6 @@ Page({
       return
     }
     const target = resolveHomeByRole(role)
-    router.switchTo(target.key, target.query)
+    router.switchTo(target.key)
   },
 })

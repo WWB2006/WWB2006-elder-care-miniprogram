@@ -44,6 +44,7 @@ Page({
     appStore.markColdStartReady()
     const target = resolveHomeByRole(role)
     // 老人 / 家属 / 游客：进入 tab 首页（switchTab）；员工：进入任务池（reLaunch）
-    router.switchTo(target.key, target.query)
+    // 不传 query：tab 页的 switchTab 不支持 query，角色由目标页从 userStore 读取
+    router.switchTo(target.key)
   },
 })
