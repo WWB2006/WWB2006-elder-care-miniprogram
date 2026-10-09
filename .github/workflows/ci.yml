@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+
+# 同一分支的旧构建自动取消，避免排队
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: 类型检查 / 代码规范 / 单元测试
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # 用 npm ci 而不是 npm install：保证与 package-lock.json 完全一致
+      - name: 安装依赖
+        run: npm ci
+
+      - name: TypeScript 类型检查
+        run: npm run type-check
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: Stylelint
+        run: npm run lint:style
+
+      - name: 工程完整性校验
+        run: npm run verify
+
+      # 覆盖率阈值在 jest.config.js 中声明，未达标会直接让这一步失败
+      - name: 单元测试
+        run: npm test -- --coverage

@@ -1,0 +1,6 @@
+# 提交前钩子：只对「本次暂存的文件」跑 lint + prettier，避免全量检查拖慢提交。
+# 规则定义在 package.json 的 lint-staged 字段中。
+#
+# 注意：husky v9 的钩子文件是一个普通 shell 脚本，需要可执行权限。
+# 在 Linux / macOS 上若克隆后不生效，执行：chmod +x .husky/pre-commit
+npx lint-staged

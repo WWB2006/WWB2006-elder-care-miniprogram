@@ -1,0 +1,60 @@
+{
+  "name": "elder-care-miniprogram",
+  "version": "0.1.0",
+  "private": true,
+  "description": "养老服务系统 · 微信小程序（老人端 / 家属端 / 服务人员端 / 机构管理端）",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "lint": "eslint \"miniprogram/**/*.ts\" \"tests/**/*.ts\"",
+    "lint:fix": "eslint \"miniprogram/**/*.ts\" \"tests/**/*.ts\" --fix",
+    "lint:style": "stylelint \"miniprogram/**/*.wxss\"",
+    "format": "prettier --write \"**/*.{ts,json,wxml,wxss,md}\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "verify": "node scripts/verify-project.js",
+    "report": "node scripts/report.js",
+    "devtools:open": "node scripts/open-in-devtools.js",
+    "precommit": "lint-staged",
+    "prepare": "husky",
+    "upload:dev": "node scripts/upload.js --env dev",
+    "upload:uat": "node scripts/upload.js --env uat",
+    "upload:prod": "node scripts/upload.js --env prod"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.20.5",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.11",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.2",
+    "miniprogram-api-typings": "^3.12.2",
+    "miniprogram-ci": "^2.0.9",
+    "miniprogram-simulate": "^1.6.0",
+    "prettier": "^3.2.5",
+    "stylelint": "^16.4.0",
+    "stylelint-config-standard": "^36.0.0",
+    "ts-jest": "^29.4.14",
+    "typescript": "^5.4.5"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ],
+    "*.wxss": [
+      "stylelint --fix"
+    ]
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
