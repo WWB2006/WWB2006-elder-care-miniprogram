@@ -1,0 +1,14 @@
+<view wx:if="{{text}}" class="vt">
+  <text class="vt__text">{{text}}</text>
+  <view
+    class="vt__action {{disabled ? 'vt__action--disabled' : ''}}"
+    hover-class="vt__action--hover"
+    bindtap="handleTap"
+    aria-role="button"
+    aria-label="{{actionText}}：{{text}}"
+    aria-disabled="{{disabled}}"
+  >
+    <text class="vt__icon">🔊</text>
+    <text class="vt__action-text">{{actionText}}</text>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "订单详情",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "step-bar": "/components/step-bar/index",
+    "empty-state": "/components/empty-state/index",
+    "loading-mask": "/components/loading-mask/index"
+  }
+}

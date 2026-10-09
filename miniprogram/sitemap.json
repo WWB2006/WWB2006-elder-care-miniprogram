@@ -1,0 +1,13 @@
+{
+  "desc": "索引规则：C 端服务页允许被微信搜索收录，登录/员工/管理类页面一律禁止",
+  "rules": [
+    { "action": "disallow", "page": "pages/launch/index" },
+    { "action": "disallow", "page": "pages/login/index" },
+    { "action": "disallow", "page": "pages/order/index" },
+    { "action": "disallow", "page": "pages/mine/index" },
+    { "action": "disallow", "page": "packageElder/pages/sos/index" },
+    { "action": "disallow", "page": "packageStaff/pages/task-pool/index" },
+    { "action": "allow", "page": "pages/service/index" },
+    { "action": "disallow", "page": "*" }
+  ]
+}

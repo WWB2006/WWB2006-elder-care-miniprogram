@@ -1,0 +1,10 @@
+<view class="launch">
+  <view class="launch__logo">
+    <text class="launch__logo-text">安心</text>
+  </view>
+  <text class="launch__name">{{appName}}</text>
+  <text class="launch__slogan">{{slogan}}</text>
+  <view class="launch__footer">
+    <text class="launch__footer-text">正在为您准备…</text>
+  </view>
+</view>

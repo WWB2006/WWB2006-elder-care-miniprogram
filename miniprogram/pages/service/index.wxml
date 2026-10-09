@@ -1,0 +1,102 @@
+<view class="page-root service {{elderMode ? 'elder-mode' : ''}}">
+  <!-- 搜索：老人端用大输入框 + 大按钮，不依赖键盘的"搜索键" -->
+  <view class="service__search">
+    <input
+      class="service__input"
+      type="text"
+      value="{{keyword}}"
+      placeholder="搜索服务，如助浴、陪诊"
+      placeholder-class="service__placeholder"
+      confirm-type="search"
+      bindinput="handleKeywordInput"
+      bindconfirm="handleSearch"
+      aria-label="搜索服务"
+    />
+    <view
+      wx:if="{{keyword}}"
+      class="service__clear"
+      hover-class="service__clear--hover"
+      bindtap="handleClearKeyword"
+      aria-role="button"
+      aria-label="清空搜索关键词"
+    >
+      ×
+    </view>
+    <view
+      class="service__search-btn"
+      hover-class="service__search-btn--hover"
+      bindtap="handleSearch"
+      aria-role="button"
+      aria-label="搜索"
+    >
+      搜索
+    </view>
+  </view>
+
+  <!-- 分类：大图标 + 文字，选中态同时用颜色与加粗表达 -->
+  <view class="service__cats">
+    <view
+      wx:for="{{categories}}"
+      wx:key="key"
+      class="service__cat {{activeCategory === item.key ? 'service__cat--active' : ''}}"
+      data-key="{{item.key}}"
+      hover-class="service__cat--hover"
+      bindtap="handleCategoryTap"
+      aria-role="button"
+      aria-label="{{item.label}}，{{item.tip}}"
+    >
+      <icon name="cat-{{item.icon}}" symbol="{{item.label}}" size="md" />
+      <text class="service__cat-label">{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 列表 -->
+  <view wx:if="{{list.length}}" class="service__list">
+    <view
+      wx:for="{{list}}"
+      wx:key="id"
+      class="card service__item"
+      data-id="{{item.id}}"
+      hover-class="service__item--hover"
+      bindtap="handleServiceTap"
+    >
+      <image class="service__cover" src="{{item.coverUrl}}" mode="aspectFill" lazy-load />
+      <view class="service__body">
+        <text class="service__name text-ellipsis">{{item.name}}</text>
+        <text class="service__org text-ellipsis">{{item.orgName}}</text>
+        <view class="service__meta">
+          <text class="service__price">{{item.priceText}}</text>
+          <text class="service__sold">{{item.soldText}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 触底自动加载之外，老人端额外提供一个大按钮 -->
+    <view
+      wx:if="{{hasMore}}"
+      class="service__more {{listLoading ? 'service__more--loading' : ''}}"
+      hover-class="service__more--hover"
+      bindtap="loadMorePage"
+      aria-role="button"
+      aria-label="加载更多服务"
+    >
+      {{listLoading ? '正在加载…' : '加载更多'}}
+    </view>
+    <text wx:else class="service__end">已经到底啦</text>
+  </view>
+
+  <!-- 空态 / 错误态：必须给出下一步动作 -->
+  <empty-state
+    wx:elif="{{!listLoading}}"
+    type="{{listError ? 'network' : 'empty'}}"
+    title="{{listError ? '暂时加载失败' : '没有找到相关服务'}}"
+    description="{{listError ? '请检查网络后重试' : '换个关键词或分类试试'}}"
+    actionText="{{listError ? '重新加载' : '查看全部服务'}}"
+    bind:action="handleRetry"
+  />
+
+  <!-- 首屏骨架屏 -->
+  <view wx:if="{{listLoading && !list.length}}" class="service__skeleton">
+    <view wx:for="{{[1, 2, 3]}}" wx:key="*this" class="skeleton service__skeleton-item"></view>
+  </view>
+</view>

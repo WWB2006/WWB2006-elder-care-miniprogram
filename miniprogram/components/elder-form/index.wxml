@@ -1,0 +1,17 @@
+<view class="ef {{vertical ? 'ef--vertical' : 'ef--horizontal'}} {{error ? 'ef--error' : ''}}">
+  <view wx:if="{{label}}" class="ef__head">
+    <text class="ef__label">{{label}}</text>
+    <text wx:if="{{required}}" class="ef__required">必填</text>
+  </view>
+
+  <view class="ef__control">
+    <slot />
+  </view>
+
+  <view wx:if="{{error}}" class="ef__error" aria-role="alert">
+    <text class="ef__error-text">{{error}}</text>
+  </view>
+  <view wx:elif="{{hint}}" class="ef__hint">
+    <text class="ef__hint-text">{{hint}}</text>
+  </view>
+</view>

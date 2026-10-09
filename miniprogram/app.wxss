@@ -1,0 +1,19 @@
+/* 全局样式入口：只做 import 与少量全局兜底，业务样式一律写在页面 / 组件内 */
+@import './styles/variables.wxss';
+@import './styles/common.wxss';
+@import './styles/elder-mode.wxss';
+
+page {
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+view,
+text,
+button,
+input {
+  box-sizing: border-box;
+}

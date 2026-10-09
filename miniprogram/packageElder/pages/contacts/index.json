@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "亲情号码",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/index"
+  }
+}

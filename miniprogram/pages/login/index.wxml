@@ -1,0 +1,41 @@
+<view class="page-root page-root--no-tabbar login {{elderMode ? 'elder-mode' : ''}}">
+  <view class="login__brand">
+    <text class="login__name">{{appName}}</text>
+    <text class="login__slogan">{{slogan}}</text>
+  </view>
+
+  <view class="login__card">
+    <text class="login__title">手机号快捷登录</text>
+    <text class="login__desc">用于接收服务通知与紧急联系，我们不会对外提供您的号码</text>
+
+    <!-- 手机号授权必须由用户点击按钮触发，禁止静默获取 -->
+    <button
+      class="login__phone-btn"
+      open-type="getPhoneNumber"
+      bindgetphonenumber="handleGetPhoneNumber"
+      loading="{{loading}}"
+      disabled="{{loading}}"
+    >
+      微信手机号一键登录
+    </button>
+
+    <view wx:if="{{errorText}}" class="login__error" aria-role="alert">
+      <text class="login__error-text">{{errorText}}</text>
+    </view>
+
+    <checkbox-group class="login__agree" bindchange="handleAgreementChange">
+      <label class="login__agree-label">
+        <checkbox value="agree" checked="{{agreed}}" />
+        <text class="login__agree-text">我已阅读并同意</text>
+      </label>
+      <text class="login__agree-link" bindtap="handleOpenAgreement">《用户协议与隐私政策》</text>
+    </checkbox-group>
+  </view>
+
+  <view class="login__extra">
+    <elder-mode-switch desc="放大字号、简化页面，看得更清楚" />
+    <view class="login__hotline" bindtap="handleHotline" aria-role="button" aria-label="拨打客服热线">
+      <text class="login__hotline-text">遇到问题？一键拨打客服热线</text>
+    </view>
+  </view>
+</view>

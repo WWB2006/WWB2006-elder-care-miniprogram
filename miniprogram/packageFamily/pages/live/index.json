@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "视频探视",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/index"
+  }
+}

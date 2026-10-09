@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "上门打卡",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/index"
+  }
+}

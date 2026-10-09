@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "用药提醒",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/index"
+  }
+}

@@ -1,0 +1,182 @@
+.offline-tip {
+  padding: var(--space-sm);
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  background-color: rgba(230, 162, 60, 0.16);
+  border-radius: var(--radius-sm);
+}
+
+/* 老人端紧急呼叫入口：全宽、高对比、带文字说明 */
+.sos-entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+  background-color: var(--color-danger);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.sos-entry__title {
+  font-size: var(--font-size-display);
+  font-weight: 700;
+  color: var(--color-text-inverse);
+}
+
+.sos-entry__desc {
+  font-size: var(--font-size-body);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.today-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--size-touch-min);
+}
+
+.today-item__label {
+  color: var(--color-text-secondary);
+}
+
+.today-item__value {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.elder-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.elder-card__name {
+  font-size: var(--font-size-heading);
+  font-weight: 600;
+}
+
+.elder-card__status {
+  color: var(--color-success);
+}
+
+.elder-card__hint {
+  display: block;
+  margin-top: var(--space-sm);
+  color: var(--color-text-secondary);
+}
+
+.guest-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+}
+
+.guest-card__title {
+  font-size: var(--font-size-heading);
+  font-weight: 700;
+  color: var(--color-text-inverse);
+}
+
+.guest-card__desc {
+  font-size: var(--font-size-body);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.guest-card__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--size-button-lg);
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-title);
+  font-weight: 600;
+  color: var(--color-primary);
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-md);
+}
+
+.cat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-md) 0;
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-md);
+}
+
+.cat-item__icon {
+  width: 72rpx;
+  height: 72rpx;
+}
+
+.cat-item__label {
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+}
+
+.service-item {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.service-item__cover {
+  flex-shrink: 0;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-border);
+}
+
+.service-item__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.service-item__name {
+  font-size: var(--font-size-title);
+  font-weight: 600;
+}
+
+.service-item__price {
+  font-size: var(--font-size-title);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.order-item__name {
+  font-size: var(--font-size-title);
+  font-weight: 600;
+}
+
+.order-item__status {
+  color: var(--color-primary);
+}
+
+.order-item__amount {
+  display: block;
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  text-align: right;
+}
+
+.hotline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--size-button-lg);
+  margin-top: var(--space-lg);
+  color: var(--color-text-link);
+  background-color: var(--color-primary-light);
+  border-radius: var(--radius-md);
+}
+
+.hotline__text {
+  font-size: var(--font-size-body);
+}

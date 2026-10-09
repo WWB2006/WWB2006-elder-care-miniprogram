@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "健康报告",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/index"
+  }
+}

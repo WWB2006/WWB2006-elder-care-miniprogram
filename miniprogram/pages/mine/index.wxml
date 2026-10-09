@@ -1,0 +1,77 @@
+<view class="page-root mine {{elderMode ? 'elder-mode' : ''}}">
+  <!-- 资料卡：未登录时给出明确的登录入口 -->
+  <view class="card mine__profile" bindtap="handleLogin">
+    <view class="mine__avatar">
+      <text class="mine__avatar-text">{{nickname[0] || '安'}}</text>
+    </view>
+    <view class="mine__info">
+      <text class="mine__name">{{nickname}}</text>
+      <text class="mine__role">{{roleLabel}}{{phoneMasked ? ' · ' + phoneMasked : ''}}</text>
+    </view>
+    <text wx:if="{{role === 'guest'}}" class="mine__login">去登录</text>
+  </view>
+
+  <!-- 关怀模式：适老化的唯一用户侧入口 -->
+  <view class="card">
+    <elder-mode-switch />
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="card mine__menus">
+    <block wx:for="{{menus}}" wx:key="key">
+      <view
+        wx:if="{{!(elderMode && item.hideInElderMode)}}"
+        class="mine__menu"
+        hover-class="mine__menu--hover"
+        data-key="{{item.key}}"
+        data-route="{{item.route}}"
+        data-needlogin="{{item.needLogin}}"
+        bindtap="handleMenuTap"
+        aria-role="button"
+        aria-label="{{item.label}}"
+      >
+        <text class="mine__menu-label">{{item.label}}</text>
+        <text class="mine__menu-arrow">›</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 客服与协议 -->
+  <view class="card mine__menus">
+    <view class="mine__menu" hover-class="mine__menu--hover" bindtap="handleHotline">
+      <text class="mine__menu-label">客服热线 {{hotline}}</text>
+      <text class="mine__menu-arrow">›</text>
+    </view>
+    <view class="mine__menu" hover-class="mine__menu--hover" bindtap="handleAgreement">
+      <text class="mine__menu-label">用户协议</text>
+      <text class="mine__menu-arrow">›</text>
+    </view>
+    <view class="mine__menu" hover-class="mine__menu--hover" bindtap="handlePrivacy">
+      <text class="mine__menu-label">隐私政策</text>
+      <text class="mine__menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 合规区：撤回授权 / 注销账号 / 退出登录 -->
+  <view class="card mine__menus">
+    <view class="mine__menu" hover-class="mine__menu--hover" bindtap="handleRevokePrivacy">
+      <text class="mine__menu-label">撤回隐私授权</text>
+      <text class="mine__menu-arrow">›</text>
+    </view>
+    <view class="mine__menu" hover-class="mine__menu--hover" bindtap="handleDeleteAccount">
+      <text class="mine__menu-label mine__menu-label--danger">注销账号</text>
+      <text class="mine__menu-arrow">›</text>
+    </view>
+    <view
+      wx:if="{{role !== 'guest'}}"
+      class="mine__menu"
+      hover-class="mine__menu--hover"
+      bindtap="handleLogout"
+    >
+      <text class="mine__menu-label">退出登录</text>
+      <text class="mine__menu-arrow">›</text>
+    </view>
+  </view>
+
+  <text class="mine__version">版本 {{appVersion}}</text>
+</view>

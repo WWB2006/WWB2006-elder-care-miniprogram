@@ -1,0 +1,83 @@
+<view class="page-root od page-root--no-tabbar {{elderMode ? 'elder-mode' : ''}}">
+  <block wx:if="{{detail}}">
+    <!-- 状态卡：文字 + 说明，不只靠颜色 -->
+    <view class="card od__status">
+      <text class="od__status-label">{{statusLabel}}</text>
+      <text class="od__status-desc">{{statusDesc}}</text>
+    </view>
+
+    <!-- 进度：取消 / 退款属于终止态，不展示进度条 -->
+    <view wx:if="{{!terminated}}" class="card">
+      <text class="section-title">服务进度</text>
+      <step-bar steps="{{steps}}" current="{{stepCurrent}}" errorIndex="{{stepErrorIndex}}" />
+    </view>
+
+    <view class="card">
+      <text class="section-title">服务信息</text>
+      <view class="od__row">
+        <text class="od__label">服务项目</text>
+        <text class="od__value">{{detail.serviceName}}</text>
+      </view>
+      <view class="od__row">
+        <text class="od__label">服务对象</text>
+        <text class="od__value">{{detail.elderName}}</text>
+      </view>
+      <view class="od__row">
+        <text class="od__label">上门时间</text>
+        <text class="od__value">{{appointmentText}}</text>
+      </view>
+      <view class="od__row">
+        <text class="od__label">服务机构</text>
+        <text class="od__value">{{detail.orgName}}</text>
+      </view>
+      <view wx:if="{{detail.staffName}}" class="od__row">
+        <text class="od__label">服务人员</text>
+        <text class="od__value">{{detail.staffName}}</text>
+      </view>
+      <view class="od__row">
+        <text class="od__label">订单号</text>
+        <text class="od__value od__value--mono">{{detail.orderNo}}</text>
+      </view>
+      <view class="od__row">
+        <text class="od__label">下单时间</text>
+        <text class="od__value">{{createdAtText}}</text>
+      </view>
+      <view class="od__row od__row--total">
+        <text class="od__label">订单金额</text>
+        <text class="od__amount">{{amountText}}</text>
+      </view>
+    </view>
+
+    <!-- 动作区：固定在底部，保证老人不用滚动去找按钮 -->
+    <view class="od__actions safe-bottom">
+      <view
+        wx:for="{{actions}}"
+        wx:key="*this"
+        class="od__action od__action--{{item}}"
+        hover-class="od__action--hover"
+        data-action="{{item}}"
+        bindtap="handleAction"
+        aria-role="button"
+      >
+        <text wx:if="{{item === 'pay'}}">去支付</text>
+        <text wx:elif="{{item === 'cancel'}}">取消订单</text>
+        <text wx:elif="{{item === 'confirm'}}">确认完成</text>
+        <text wx:elif="{{item === 'evaluate'}}">去评价</text>
+      </view>
+      <view class="od__action od__action--ghost" hover-class="od__action--hover" bindtap="handleHotline">
+        <text>联系客服</text>
+      </view>
+    </view>
+  </block>
+
+  <empty-state
+    wx:elif="{{loadFailed}}"
+    type="network"
+    title="订单加载失败"
+    description="请检查网络后重试，或返回订单列表"
+    actionText="重新加载"
+    bind:action="handleRetry"
+  />
+
+  <loading-mask visible="{{loading}}" text="正在加载订单…" />
+</view>

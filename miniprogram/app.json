@@ -1,0 +1,112 @@
+{
+  "entryPagePath": "pages/launch/index",
+  "pages": [
+    "pages/launch/index",
+    "pages/login/index",
+    "pages/home/index",
+    "pages/service/index",
+    "pages/order/index",
+    "pages/order-detail/index",
+    "pages/mine/index",
+    "pages/webview/index"
+  ],
+  "subPackages": [
+    {
+      "root": "packageElder",
+      "name": "elder",
+      "pages": [
+        "pages/sos/index",
+        "pages/health/index",
+        "pages/medication/index",
+        "pages/voice-assistant/index",
+        "pages/contacts/index"
+      ]
+    },
+    {
+      "root": "packageFamily",
+      "name": "family",
+      "pages": [
+        "pages/elder-detail/index",
+        "pages/booking/index",
+        "pages/pay/index",
+        "pages/report/index",
+        "pages/live/index",
+        "pages/evaluate/index"
+      ]
+    },
+    {
+      "root": "packageStaff",
+      "name": "staff",
+      "pages": [
+        "pages/task-pool/index",
+        "pages/task-detail/index",
+        "pages/checkin/index",
+        "pages/service-log/index",
+        "pages/schedule/index"
+      ]
+    },
+    {
+      "root": "packageAdmin",
+      "name": "admin",
+      "pages": [
+        "pages/dashboard/index",
+        "pages/elder-manage/index",
+        "pages/dispatch/index",
+        "pages/audit/index"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/home/index": {
+      "network": "all",
+      "packages": ["elder", "family"]
+    },
+    "pages/order/index": {
+      "network": "wifi",
+      "packages": ["staff"]
+    }
+  },
+  "window": {
+    "navigationStyle": "default",
+    "navigationBarBackgroundColor": "#1E5AA8",
+    "navigationBarTitleText": "安心养老",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5F7FA",
+    "backgroundColorTop": "#F5F7FA",
+    "backgroundColorBottom": "#F5F7FA",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#8A94A6",
+    "selectedColor": "#1E5AA8",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/home/index", "text": "首页" },
+      { "pagePath": "pages/service/index", "text": "服务" },
+      { "pagePath": "pages/order/index", "text": "订单" },
+      { "pagePath": "pages/mine/index", "text": "我的" }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于上门服务定位打卡、紧急呼叫位置上报与附近服务网点推荐"
+    }
+  },
+  "requiredPrivateInfos": ["getLocation", "chooseLocation", "onLocationChange"],
+  "__usePrivacyCheck__": true,
+  "plugins": {},
+  "lazyCodeLoading": "requiredComponents",
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "darkmode": false,
+  "networkTimeout": {
+    "request": 15000,
+    "connectSocket": 15000,
+    "uploadFile": 30000,
+    "downloadFile": 30000
+  },
+  "debug": false
+}

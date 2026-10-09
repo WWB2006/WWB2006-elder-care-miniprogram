@@ -1,0 +1,21 @@
+<view class="sb" aria-role="list">
+  <view
+    wx:for="{{nodes}}"
+    wx:key="index"
+    class="sb__node sb__node--{{item.state}}"
+    aria-role="listitem"
+    aria-label="{{item.label}}，{{item.stateText}}"
+  >
+    <view class="sb__rail">
+      <view class="sb__dot">
+        <text class="sb__dot-text">{{item.state === 'done' ? '✓' : item.index + 1}}</text>
+      </view>
+      <view wx:if="{{index < nodes.length - 1}}" class="sb__line"></view>
+    </view>
+    <view class="sb__body">
+      <text class="sb__label">{{item.label}}</text>
+      <text class="sb__state">{{item.stateText}}</text>
+      <text wx:if="{{item.desc}}" class="sb__desc">{{item.desc}}</text>
+    </view>
+  </view>
+</view>

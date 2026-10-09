@@ -1,0 +1,18 @@
+<view class="ems">
+  <view class="ems__body">
+    <text class="ems__title">关怀模式</text>
+    <text class="ems__desc">{{desc}}</text>
+  </view>
+  <view
+    class="ems__toggle {{elderMode ? 'ems__toggle--on' : ''}} {{disabled ? 'ems__toggle--disabled' : ''}}"
+    hover-class="ems__toggle--hover"
+    bindtap="handleToggle"
+    aria-role="switch"
+    aria-checked="{{elderMode}}"
+    aria-label="关怀模式，当前{{elderMode ? '已开启' : '已关闭'}}"
+    aria-disabled="{{disabled}}"
+  >
+    <view class="ems__knob"></view>
+    <text class="ems__state">{{elderMode ? '已开启' : '已关闭'}}</text>
+  </view>
+</view>

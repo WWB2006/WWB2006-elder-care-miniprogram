@@ -1,0 +1,93 @@
+.mine__profile {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.mine__avatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-avatar);
+  height: var(--size-avatar);
+  background-color: var(--color-primary-light);
+  border-radius: 50%;
+}
+
+.mine__avatar-text {
+  font-size: var(--font-size-heading);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.mine__info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.mine__name {
+  font-size: var(--font-size-heading);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.mine__role {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+}
+
+.mine__login {
+  flex-shrink: 0;
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-pill);
+}
+
+.mine__menus {
+  padding: 0 var(--space-lg);
+}
+
+.mine__menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--size-touch-min);
+  border-bottom: 2rpx solid var(--color-border);
+}
+
+.mine__menu:last-child {
+  border-bottom: none;
+}
+
+.mine__menu--hover {
+  background-color: var(--color-bg-page);
+}
+
+.mine__menu-label {
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+}
+
+.mine__menu-label--danger {
+  color: var(--color-danger);
+}
+
+.mine__menu-arrow {
+  font-size: var(--font-size-heading);
+  color: var(--color-text-tertiary);
+}
+
+.mine__version {
+  display: block;
+  padding: var(--space-lg) 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-text-tertiary);
+  text-align: center;
+}

@@ -1,0 +1,12 @@
+<view wx:if="{{url}}" class="webview">
+  <web-view src="{{url}}" bindmessage="handleMessage" binderror="handleError" />
+</view>
+
+<empty-state
+  wx:else
+  type="error"
+  title="无法打开该页面"
+  description="{{errorText}}"
+  actionText="返回上一页"
+  bind:action="handleBack"
+/>

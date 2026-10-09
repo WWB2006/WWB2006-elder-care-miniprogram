@@ -1,0 +1,58 @@
+.sosb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg) 0;
+}
+
+/* 环形进度用 border 叠加实现，避免依赖 conic-gradient（低端机兼容性差） */
+.sosb__ring {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 420rpx;
+  height: 420rpx;
+  background-color: var(--color-danger);
+  border: 12rpx solid var(--color-danger-dark);
+  border-radius: 50%;
+  box-shadow: 0 12rpx 32rpx rgba(217, 48, 38, 0.32);
+  transition: transform 0.12s ease;
+}
+
+.sosb--pressing .sosb__ring {
+  transform: scale(0.97);
+  background-color: var(--color-danger-dark);
+}
+
+.sosb--triggered .sosb__ring {
+  background-color: var(--color-danger-dark);
+}
+
+.sosb--disabled .sosb__ring {
+  background-color: var(--color-text-tertiary);
+  border-color: var(--color-border-strong);
+  box-shadow: none;
+}
+
+.sosb__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0 var(--space-lg);
+}
+
+.sosb__text {
+  font-size: 72rpx;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-inverse);
+  text-align: center;
+}
+
+.sosb__hint {
+  font-size: var(--font-size-caption);
+  color: rgba(255, 255, 255, 0.92);
+  text-align: center;
+}

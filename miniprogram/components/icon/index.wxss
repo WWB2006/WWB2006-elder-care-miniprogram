@@ -1,0 +1,49 @@
+.icon-comp {
+  flex-shrink: 0;
+  width: var(--size-icon);
+  height: var(--size-icon);
+}
+
+.icon-comp--sm {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.icon-comp--lg {
+  width: 72rpx;
+  height: 72rpx;
+}
+
+.icon-comp--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary-light);
+}
+
+.icon-comp__symbol {
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.icon-comp--danger .icon-comp__symbol {
+  color: var(--color-danger);
+}
+
+.icon-comp--success .icon-comp__symbol {
+  color: var(--color-success);
+}
+
+.icon-comp--warning .icon-comp__symbol {
+  color: var(--color-warning);
+}
+
+.icon-comp--inverse .icon-comp__symbol {
+  color: var(--color-text-inverse);
+}
+
+.icon-comp--inverse.icon-comp--fallback {
+  background-color: rgba(255, 255, 255, 0.18);
+}

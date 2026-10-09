@@ -1,0 +1,20 @@
+<view
+  class="card-comp {{flat ? 'card-comp--flat' : ''}} {{primary ? 'card-comp--primary' : ''}} {{clickable ? 'card-comp--clickable' : ''}}"
+  bindtap="handleTap"
+>
+  <view wx:if="{{title || extra}}" class="card-comp__head">
+    <text class="card-comp__title">{{title}}</text>
+    <view
+      wx:if="{{extra}}"
+      class="card-comp__extra"
+      hover-class="card-comp__extra--hover"
+      catchtap="handleExtra"
+      aria-role="button"
+      aria-label="{{extra}}"
+    >
+      {{extra}}
+    </view>
+  </view>
+  <slot />
+  <slot name="footer" />
+</view>

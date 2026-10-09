@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "服务记录",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/index"
+  }
+}

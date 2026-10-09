@@ -1,0 +1,56 @@
+<view class="page-root page-root--no-tabbar sos {{elderMode ? 'elder-mode' : ''}}">
+  <!-- 状态区：无论成败都要告诉老人「现在在做什么」 -->
+  <view class="sos__status sos__status--{{phase}}">
+    <text class="sos__status-text">{{statusText}}</text>
+    <text wx:if="{{locationMissing}}" class="sos__status-hint">
+      未能获取位置，已按「位置未知」上报，不影响呼叫
+    </text>
+    <text wx:if="{{elderName}}" class="sos__status-sub">服务对象：{{elderName}}</text>
+  </view>
+
+  <!-- 唯一的主动作：长按 3 秒（组件内已含震动 + 进度 + 松手取消） -->
+  <sos-button
+    bind:trigger="handleTrigger"
+    bind:cancel="handleRetry"
+    disabled="{{phase === 'calling'}}"
+  />
+
+  <view wx:if="{{phase === 'calling'}}" class="sos__retry" bindtap="handleRetry" aria-role="button">
+    <text class="sos__retry-text">没有反应？点这里重新呼叫</text>
+  </view>
+
+  <!-- 兜底通道：平台与拨号都失败时，至少还有电话 -->
+  <view wx:if="{{phase === 'fallback' || phase === 'accepted'}}" class="sos__fallback">
+    <text class="sos__fallback-title">也可以直接拨打</text>
+    <view class="sos__fallback-row">
+      <view class="sos__fallback-btn sos__fallback-btn--primary" bindtap="handleCallHotline" aria-role="button">
+        <text>客服热线</text>
+      </view>
+      <view class="sos__fallback-btn sos__fallback-btn--danger" bindtap="handleCall120" aria-role="button">
+        <text>120 急救</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 紧急联系人列表：大字、一键拨号 -->
+  <view wx:if="{{contacts.length}}" class="sos__contacts">
+    <text class="sos__contacts-title">紧急联系人</text>
+    <view
+      wx:for="{{contacts}}"
+      wx:key="phone"
+      class="sos__contact"
+      hover-class="sos__contact--hover"
+      data-phone="{{item.phone}}"
+      data-name="{{item.name}}"
+      bindtap="handleCallContact"
+      aria-role="button"
+      aria-label="拨打{{item.name}}的电话"
+    >
+      <view class="sos__contact-info">
+        <text class="sos__contact-name">{{item.name}}</text>
+        <text class="sos__contact-relation">{{item.relation}}</text>
+      </view>
+      <text class="sos__contact-action">拨号</text>
+    </view>
+  </view>
+</view>

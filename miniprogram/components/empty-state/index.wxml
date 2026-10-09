@@ -1,0 +1,8 @@
+<view class="es">
+  <view class="es__icon es__icon--{{type}}"></view>
+  <text class="es__title">{{title}}</text>
+  <text wx:if="{{description}}" class="es__desc">{{description}}</text>
+  <view wx:if="{{actionText}}" class="es__action" hover-class="es__action--hover" bindtap="handleAction">
+    {{actionText}}
+  </view>
+</view>

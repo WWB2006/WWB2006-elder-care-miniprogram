@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的排班",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/index"
+  }
+}

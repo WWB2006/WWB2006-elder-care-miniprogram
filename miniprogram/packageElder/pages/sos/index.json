@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "紧急呼叫",
+  "navigationBarBackgroundColor": "#D93026",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "sos-button": "/components/sos-button/index",
+    "elder-button": "/components/elder-button/index"
+  }
+}

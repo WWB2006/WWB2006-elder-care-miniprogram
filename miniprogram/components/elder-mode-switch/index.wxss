@@ -1,0 +1,75 @@
+.ems {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  min-height: var(--size-touch-min);
+  padding: var(--space-md) 0;
+}
+
+.ems__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.ems__title {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.ems__desc {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+}
+
+/* 自绘开关：原生 switch 无法使用设计令牌，且触控区偏小 */
+.ems__toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 160rpx;
+  height: 88rpx;
+  padding: 0 var(--space-sm);
+  background-color: var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  transition: background-color 0.2s ease;
+}
+
+.ems__toggle--on {
+  justify-content: flex-start;
+  background-color: var(--color-primary);
+}
+
+.ems__toggle--hover {
+  opacity: 0.9;
+}
+
+.ems__toggle--disabled {
+  opacity: 0.5;
+}
+
+.ems__knob {
+  position: absolute;
+  top: 8rpx;
+  left: 8rpx;
+  width: 72rpx;
+  height: 72rpx;
+  background-color: var(--color-bg-card);
+  border-radius: 50%;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease;
+}
+
+.ems__toggle--on .ems__knob {
+  transform: translateX(72rpx);
+}
+
+.ems__state {
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  color: var(--color-text-inverse);
+}

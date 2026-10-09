@@ -1,0 +1,11 @@
+<image
+  wx:if="{{name && !loadFailed}}"
+  class="icon-comp icon-comp--{{size}} icon-comp--{{tone}}"
+  src="/assets/icons/{{name}}.png"
+  mode="aspectFit"
+  binderror="handleError"
+  aria-hidden="true"
+/>
+<view wx:else class="icon-comp icon-comp--{{size}} icon-comp--{{tone}} icon-comp--fallback" aria-hidden="true">
+  <text class="icon-comp__symbol">{{symbol}}</text>
+</view>

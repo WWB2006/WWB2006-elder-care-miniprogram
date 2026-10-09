@@ -1,0 +1,18 @@
+<view
+  class="eb eb--{{type}} {{disabled ? 'eb--disabled' : ''}} {{pressing ? 'eb--pressing' : ''}}"
+  hover-class="eb--hover"
+  hover-stay-time="80"
+  bindtap="handleTap"
+  bindtouchstart="handleTouchStart"
+  bindtouchmove="handleTouchMove"
+  bindtouchend="handleTouchEnd"
+  bindtouchcancel="handleTouchEnd"
+  aria-role="button"
+  aria-label="{{ariaLabel || text}}"
+  aria-disabled="{{disabled || loading}}"
+>
+  <view wx:if="{{loading}}" class="eb__loading"></view>
+  <text class="eb__text">{{text}}</text>
+  <text wx:if="{{pressing}}" class="eb__progress">{{progress}}%</text>
+  <text wx:elif="{{longPressMs > 0 && longPressHint}}" class="eb__hint">{{longPressHint}}</text>
+</view>

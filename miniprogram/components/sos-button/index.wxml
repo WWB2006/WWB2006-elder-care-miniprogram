@@ -1,0 +1,19 @@
+<view class="sosb {{pressing ? 'sosb--pressing' : ''}} {{triggered ? 'sosb--triggered' : ''}} {{disabled ? 'sosb--disabled' : ''}}">
+  <view
+    class="sosb__ring"
+    bindtouchstart="handleTouchStart"
+    bindtouchmove="handleTouchMove"
+    bindtouchend="handleTouchEnd"
+    bindtouchcancel="handleTouchEnd"
+    aria-role="button"
+    aria-label="{{triggered ? triggeredText : text}}"
+    aria-disabled="{{disabled}}"
+  >
+    <view class="sosb__inner">
+      <text class="sosb__text">{{triggered ? triggeredText : (pressing ? progress + '%' : text)}}</text>
+      <text class="sosb__hint">
+        {{triggered ? cooldownLeft + ' 秒后可再次呼叫' : (pressing ? pressingText : '长按 3 秒')}}
+      </text>
+    </view>
+  </view>
+</view>

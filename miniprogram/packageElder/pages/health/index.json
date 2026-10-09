@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "健康档案",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "mini-chart": "/components/mini-chart/index",
+    "empty-state": "/components/empty-state/index",
+    "elder-form": "/components/elder-form/index",
+    "elder-button": "/components/elder-button/index"
+  }
+}

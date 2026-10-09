@@ -1,0 +1,117 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.login__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-xl) 0 var(--space-lg);
+}
+
+.login__name {
+  font-size: var(--font-size-display);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.login__slogan {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}
+
+.login__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.login__title {
+  font-size: var(--font-size-heading);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.login__desc {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+}
+
+/* 手机号授权按钮由微信接管点击，样式上必须保证足够大的触控区 */
+.login__phone-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--size-button-lg);
+  font-size: var(--font-size-title);
+  font-weight: 600;
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-md);
+}
+
+.login__phone-btn::after {
+  border: none;
+}
+
+.login__error {
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-primary-light);
+  border-left: 6rpx solid var(--color-danger);
+  border-radius: var(--radius-sm);
+}
+
+.login__error-text {
+  font-size: var(--font-size-caption);
+  color: var(--color-danger);
+}
+
+.login__agree {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.login__agree-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--size-touch-min);
+}
+
+.login__agree-text {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+}
+
+.login__agree-link {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-link);
+}
+
+.login__extra {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.login__hotline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--size-button-lg);
+  background-color: var(--color-primary-light);
+  border-radius: var(--radius-md);
+}
+
+.login__hotline-text {
+  font-size: var(--font-size-body);
+  color: var(--color-text-link);
+}

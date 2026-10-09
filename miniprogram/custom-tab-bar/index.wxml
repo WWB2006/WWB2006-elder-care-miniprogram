@@ -1,0 +1,16 @@
+<view class="tabbar safe-bottom">
+  <view
+    wx:for="{{list}}"
+    wx:key="index"
+    class="tabbar__item {{selected === item.index ? 'tabbar__item--active' : ''}}"
+    data-path="{{item.pagePath}}"
+    data-index="{{item.index}}"
+    hover-class="tabbar__item--hover"
+    bindtap="handleSwitch"
+    aria-role="tab"
+    aria-selected="{{selected === item.index}}"
+  >
+    <image class="tabbar__icon" src="/assets/icons/tab-{{item.icon}}{{selected === item.index ? '-active' : ''}}.png" mode="aspectFit" />
+    <text class="tabbar__text">{{item.text}}</text>
+  </view>
+</view>

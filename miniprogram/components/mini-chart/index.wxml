@@ -1,0 +1,18 @@
+<view class="mc">
+  <view wx:if="{{showAxis && hasData}}" class="mc__axis">
+    <text class="mc__axis-item">最高 {{maxText}}</text>
+    <text class="mc__axis-item">最新 {{latestText}}</text>
+    <text class="mc__axis-item">最低 {{minText}}</text>
+  </view>
+
+  <view wx:if="{{hasData}}" class="mc__plot" style="height: {{height}}rpx;">
+    <view wx:for="{{bars}}" wx:key="at" class="mc__col">
+      <view class="mc__bar mc__bar--{{tone}}" style="height: {{item.percent}}%;"></view>
+      <text class="mc__label">{{item.label}}</text>
+    </view>
+  </view>
+
+  <view wx:else class="mc__empty">
+    <text class="mc__empty-text">暂无数据</text>
+  </view>
+</view>

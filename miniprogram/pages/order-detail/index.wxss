@@ -1,0 +1,105 @@
+.od {
+  padding-bottom: calc(var(--space-xl) + env(safe-area-inset-bottom));
+}
+
+.od__status {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  background-image: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+}
+
+.od__status-label {
+  font-size: var(--font-size-heading);
+  font-weight: 700;
+  color: var(--color-text-inverse);
+}
+
+.od__status-desc {
+  font-size: var(--font-size-body);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.od__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  min-height: 72rpx;
+}
+
+.od__label {
+  flex-shrink: 0;
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}
+
+.od__value {
+  flex: 1;
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  text-align: right;
+  word-break: break-all;
+}
+
+.od__value--mono {
+  font-size: var(--font-size-caption);
+}
+
+.od__row--total {
+  padding-top: var(--space-sm);
+  margin-top: var(--space-sm);
+  border-top: 2rpx solid var(--color-border);
+}
+
+.od__amount {
+  font-size: var(--font-size-heading);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.od__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.od__action {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-width: 220rpx;
+  min-height: var(--size-button-lg);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+}
+
+.od__action--hover {
+  opacity: 0.88;
+}
+
+.od__action--pay,
+.od__action--confirm {
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
+}
+
+.od__action--evaluate {
+  color: var(--color-text-inverse);
+  background-color: var(--color-accent);
+}
+
+/* 取消属于危险且不可逆的操作：用描边而非实心，降低误触概率 */
+.od__action--cancel {
+  color: var(--color-danger);
+  background-color: var(--color-bg-card);
+  border: 2rpx solid var(--color-danger);
+}
+
+.od__action--ghost {
+  color: var(--color-text-link);
+  background-color: var(--color-primary-light);
+}

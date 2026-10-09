@@ -1,0 +1,70 @@
+<view class="page-root order {{elderMode ? 'elder-mode' : ''}}">
+  <!-- 状态筛选：横向可滚动，选中态用下划线 + 加粗（不只靠颜色） -->
+  <scroll-view class="order__tabs" scroll-x enable-flex>
+    <view
+      wx:for="{{tabs}}"
+      wx:key="key"
+      class="order__tab {{activeStatus === item.key ? 'order__tab--active' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="handleTabTap"
+      aria-role="tab"
+      aria-selected="{{activeStatus === item.key}}"
+    >
+      <text class="order__tab-text">{{item.label}}</text>
+    </view>
+  </scroll-view>
+
+  <view wx:if="{{list.length}}" class="order__list">
+    <view
+      wx:for="{{list}}"
+      wx:key="orderId"
+      class="card order__item"
+      data-id="{{item.orderId}}"
+      hover-class="order__item--hover"
+      bindtap="handleOrderTap"
+    >
+      <view class="order__head">
+        <text class="order__name text-ellipsis">{{item.serviceName}}</text>
+        <text class="order__status order__status--{{item.statusTone}}">{{item.statusLabel}}</text>
+      </view>
+      <text class="order__desc">{{item.statusDesc}}</text>
+      <view class="order__row">
+        <text class="order__label">上门时间</text>
+        <text class="order__value">{{item.appointmentText}}</text>
+      </view>
+      <view class="order__row">
+        <text class="order__label">服务对象</text>
+        <text class="order__value">{{item.elderName}}</text>
+      </view>
+      <view class="order__foot">
+        <text class="order__org text-ellipsis">{{item.orgName}}</text>
+        <text class="order__amount">{{item.amountText}}</text>
+      </view>
+    </view>
+
+    <view
+      wx:if="{{hasMore}}"
+      class="order__more"
+      hover-class="order__more--hover"
+      bindtap="loadMorePage"
+      aria-role="button"
+      aria-label="加载更多订单"
+    >
+      {{listLoading ? '正在加载…' : '加载更多'}}
+    </view>
+    <text wx:else class="order__end">已经到底啦</text>
+  </view>
+
+  <empty-state
+    wx:elif="{{!listLoading}}"
+    type="{{listError ? 'network' : 'empty'}}"
+    title="{{listError ? '暂时加载失败' : '还没有订单'}}"
+    description="{{listError ? '请检查网络后重试' : '选择一项服务，为家人预约上门照护'}}"
+    actionText="{{listError ? '重新加载' : '去预约服务'}}"
+    bind:action="handleEmptyAction"
+  />
+
+  <view wx:if="{{listLoading && !list.length}}" class="order__skeleton">
+    <view wx:for="{{[1, 2, 3]}}" wx:key="*this" class="skeleton order__skeleton-item"></view>
+  </view>
+</view>

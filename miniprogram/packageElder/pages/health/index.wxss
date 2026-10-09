@@ -1,0 +1,106 @@
+.health {
+  display: flex;
+  flex-direction: column;
+}
+
+.health__tabs {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.health__tab {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--size-touch-min);
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-card);
+  border: 4rpx solid transparent;
+  border-radius: var(--radius-md);
+}
+
+.health__tab--active {
+  font-weight: 700;
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary);
+}
+
+.health__tab-text {
+  font-size: inherit;
+}
+
+.health__input {
+  min-height: var(--size-touch-min);
+  padding: 0 var(--space-md);
+  font-size: var(--font-size-heading);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-card);
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.health__tip {
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-sm) 0;
+  background-color: var(--color-primary-light);
+  border-left: 6rpx solid var(--color-warning);
+  border-radius: var(--radius-sm);
+}
+
+.health__tip-text {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-primary);
+}
+
+.health__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  min-height: 88rpx;
+  border-bottom: 2rpx solid var(--color-border);
+}
+
+.health__item:last-child {
+  border-bottom: none;
+}
+
+.health__item-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.health__item-value {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.health__item-time {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-tertiary);
+}
+
+.health__item-level {
+  flex-shrink: 0;
+  font-size: var(--font-size-caption);
+  text-align: right;
+}
+
+.health__item-level--success {
+  color: var(--color-success);
+}
+
+.health__item-level--warning {
+  color: var(--color-warning);
+}
+
+.health__skeleton {
+  height: 240rpx;
+}

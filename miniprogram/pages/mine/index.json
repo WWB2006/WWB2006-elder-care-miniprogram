@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的",
+  "usingComponents": {
+    "elder-mode-switch": "/components/elder-mode-switch/index"
+  }
+}

@@ -1,0 +1,98 @@
+.sb {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md) 0;
+}
+
+.sb__node {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.sb__rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.sb__dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56rpx;
+  height: 56rpx;
+  font-size: var(--font-size-caption);
+  font-weight: 700;
+  color: var(--color-text-tertiary);
+  background-color: var(--color-border);
+  border-radius: 50%;
+}
+
+.sb__line {
+  flex: 1;
+  width: 4rpx;
+  min-height: 48rpx;
+  background-color: var(--color-border);
+}
+
+.sb__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-bottom: var(--space-lg);
+}
+
+.sb__label {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.sb__state {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-tertiary);
+}
+
+.sb__desc {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+}
+
+/* 已完成 */
+.sb__node--done .sb__dot {
+  color: var(--color-text-inverse);
+  background-color: var(--color-success);
+}
+
+.sb__node--done .sb__line {
+  background-color: var(--color-success);
+}
+
+.sb__node--done .sb__state {
+  color: var(--color-success);
+}
+
+/* 进行中：加描边强调，不只靠颜色 */
+.sb__node--active .sb__dot {
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
+  box-shadow: 0 0 0 6rpx var(--color-primary-light);
+}
+
+.sb__node--active .sb__state {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* 异常 */
+.sb__node--error .sb__dot {
+  color: var(--color-text-inverse);
+  background-color: var(--color-danger);
+}
+
+.sb__node--error .sb__state {
+  font-weight: 600;
+  color: var(--color-danger);
+}

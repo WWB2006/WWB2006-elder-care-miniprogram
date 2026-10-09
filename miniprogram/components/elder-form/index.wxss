@@ -1,0 +1,67 @@
+.ef {
+  padding: var(--space-md) 0;
+}
+
+.ef--vertical {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.ef--horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.ef__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.ef--horizontal .ef__head {
+  flex-shrink: 0;
+  width: 180rpx;
+}
+
+.ef__label {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.ef__required {
+  padding: 0 var(--space-xs);
+  font-size: var(--font-size-caption);
+  color: var(--color-danger);
+  border: 2rpx solid var(--color-danger);
+  border-radius: var(--radius-sm);
+}
+
+.ef__control {
+  flex: 1;
+}
+
+.ef__error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.ef__error-text {
+  font-size: var(--font-size-caption);
+  color: var(--color-danger);
+}
+
+.ef__hint-text {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-tertiary);
+}
+
+/* 错误态：给控件区加左侧强调条，不只依赖文字颜色 */
+.ef--error .ef__control {
+  padding-left: var(--space-sm);
+  border-left: 6rpx solid var(--color-danger);
+}

@@ -1,0 +1,7 @@
+<view class="page-root">
+  <view class="card">
+    <text class="section-title">健康报告</text>
+    <text class="text-secondary">页面待实现，接口与交互细节见 docs/设计方案.md。</text>
+  </view>
+  <empty-state wx:if="{{!loading}}" title="功能开发中" description="该页面已纳入迭代计划" />
+</view>

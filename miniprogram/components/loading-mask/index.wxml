@@ -1,0 +1,12 @@
+<view
+  wx:if="{{visible}}"
+  class="lm {{mask ? 'lm--mask' : ''}}"
+  catchtouchmove="noop"
+  aria-role="alert"
+  aria-label="{{text}}"
+>
+  <view class="lm__box">
+    <view class="lm__spinner"></view>
+    <text class="lm__text">{{text}}</text>
+  </view>
+</view>

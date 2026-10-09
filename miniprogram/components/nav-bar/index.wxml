@@ -1,0 +1,20 @@
+<view class="nb {{primary ? 'nb--primary' : ''}}">
+  <view class="nb__status" style="height: {{statusBarHeight}}px;"></view>
+  <view class="nb__bar" style="height: {{navBarHeight}}px;">
+    <view
+      wx:if="{{showBack}}"
+      class="nb__back"
+      hover-class="nb__back--hover"
+      bindtap="handleBack"
+      aria-role="button"
+      aria-label="返回"
+    >
+      <text class="nb__back-icon">‹</text>
+      <text class="nb__back-text">返回</text>
+    </view>
+    <view class="nb__title-wrap">
+      <text class="nb__title">{{title}}</text>
+      <text wx:if="{{subtitle}}" class="nb__subtitle">{{subtitle}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,100 @@
+<view class="page-root page-root--no-tabbar health {{elderMode ? 'elder-mode' : ''}}">
+  <!-- 指标切换 -->
+  <view class="health__tabs">
+    <view
+      wx:for="{{typeTabs}}"
+      wx:key="key"
+      class="health__tab {{activeType === item.key ? 'health__tab--active' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="handleTypeTap"
+      aria-role="tab"
+      aria-selected="{{activeType === item.key}}"
+    >
+      <text class="health__tab-text">{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 录入区：只填数字 + 一个大按钮 -->
+  <view class="card">
+    <text class="section-title">记录一次{{activeUnit}}</text>
+
+    <block wx:if="{{activeType === 'blood_pressure'}}">
+      <elder-form label="收缩压（高压）" required hint="单位 mmHg，例如 128">
+        <input
+          class="health__input"
+          type="digit"
+          value="{{systolic}}"
+          data-field="systolic"
+          placeholder="请输入高压"
+          bindinput="handleInput"
+        />
+      </elder-form>
+      <elder-form label="舒张压（低压）" required hint="单位 mmHg，例如 82">
+        <input
+          class="health__input"
+          type="digit"
+          value="{{diastolic}}"
+          data-field="diastolic"
+          placeholder="请输入低压"
+          bindinput="handleInput"
+        />
+      </elder-form>
+    </block>
+
+    <elder-form wx:else label="测量数值" required hint="单位 {{activeUnit}}">
+      <input
+        class="health__input"
+        type="digit"
+        value="{{singleValue}}"
+        data-field="singleValue"
+        placeholder="请输入数值"
+        bindinput="handleInput"
+      />
+    </elder-form>
+
+    <view wx:if="{{abnormalTip}}" class="health__tip" aria-role="alert">
+      <text class="health__tip-text">{{abnormalTip}}</text>
+    </view>
+
+    <elder-button
+      text="{{saving ? '正在保存…' : '保存记录'}}"
+      loading="{{saving}}"
+      bind:tap="handleSave"
+    />
+  </view>
+
+  <!-- 趋势图 -->
+  <view class="card">
+    <text class="section-title">近期趋势</text>
+    <mini-chart
+      points="{{chartPoints}}"
+      unit="{{activeUnit}}"
+      tone="{{activeType === 'blood_pressure' ? 'primary' : 'success'}}"
+    />
+  </view>
+
+  <!-- 记录列表 -->
+  <view wx:if="{{list.length}}" class="card">
+    <text class="section-title">历史记录</text>
+    <view wx:for="{{list}}" wx:key="recordId" class="health__item">
+      <view class="health__item-main">
+        <text class="health__item-value">{{item.valueText}}</text>
+        <text class="health__item-time">{{item.measuredText}}</text>
+      </view>
+      <text wx:if="{{item.levelText}}" class="health__item-level health__item-level--{{item.levelTone}}">
+        {{item.levelText}}
+      </text>
+    </view>
+  </view>
+
+  <empty-state
+    wx:elif="{{!loading}}"
+    type="{{loadFailed ? 'network' : 'empty'}}"
+    title="{{loadFailed ? '暂时加载失败' : '还没有健康记录'}}"
+    description="{{loadFailed ? '请检查网络后重试' : '记录一次数据，趋势就出来了'}}"
+    actionText="{{loadFailed ? '重新加载' : ''}}"
+    bind:action="handleRetry"
+  />
+
+  <view wx:if="{{loading && !list.length}}" class="skeleton health__skeleton"></view>
+</view>

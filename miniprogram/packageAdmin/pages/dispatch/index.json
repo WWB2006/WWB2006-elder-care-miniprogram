@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "派单调度",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/index"
+  }
+}

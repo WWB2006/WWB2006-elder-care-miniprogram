@@ -1,0 +1,133 @@
+<view class="page-root {{elderMode ? 'elder-mode' : ''}}">
+  <!-- 弱网 / 离线提示：不阻断浏览，只做告知 -->
+  <view wx:if="{{networkHint}}" class="offline-tip">{{networkHint}}</view>
+
+  <!-- 老人端首屏：能看见、够得着、按得准 -->
+  <block wx:if="{{role === 'elder'}}">
+    <view class="sos-entry" bindtap="handleSos" aria-role="button" aria-label="紧急呼叫">
+      <text class="sos-entry__title">紧急呼叫</text>
+      <text class="sos-entry__desc">点击进入，长按 3 秒即可呼叫家属与机构</text>
+    </view>
+
+    <view class="card today-card">
+      <view class="section-title">
+        <text>今天的照护</text>
+      </view>
+      <view class="today-item">
+        <text class="today-item__label">用药提醒</text>
+        <text class="today-item__value">08:00 降压药 1 片</text>
+      </view>
+      <view class="divider"></view>
+      <view class="today-item">
+        <text class="today-item__label">上门服务</text>
+        <text class="today-item__value">14:30 助浴服务</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 家属端首屏：老人状态一眼可见 -->
+  <block wx:elif="{{role === 'family'}}">
+    <view class="card elder-card">
+      <view class="elder-card__head">
+        <text class="elder-card__name">{{elderName || '我的家人'}}</text>
+        <text class="elder-card__status">状态良好</text>
+      </view>
+      <text class="elder-card__hint">最近一次血压 128/82（今日 08:12）</text>
+    </view>
+  </block>
+
+  <!-- 员工端：首页只做概览，主操作在任务池 -->
+  <block wx:elif="{{role === 'staff'}}">
+    <view class="card">
+      <view class="flex-between">
+        <text class="text-primary">今日待服务 {{orders.length}} 单</text>
+        <text class="section-title__more" bindtap="handleMoreOrder">查看全部</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 游客：先看服务与价格，再决定是否登录 -->
+  <block wx:else>
+    <view class="card guest-card">
+      <text class="guest-card__title">专业养老服务，就在您身边</text>
+      <text class="guest-card__desc">助餐、助浴、助医、陪诊等上门服务，明码标价</text>
+      <view class="guest-card__action" bindtap="handleLogin">手机号快速登录</view>
+    </view>
+  </block>
+
+  <!-- 服务分类：所有角色可见 -->
+  <view class="section-title">
+    <text>服务分类</text>
+  </view>
+  <view class="grid-3">
+    <view
+      wx:for="{{categories}}"
+      wx:key="key"
+      class="cat-item"
+      data-key="{{item.key}}"
+      bindtap="handleCategoryTap"
+    >
+      <image class="cat-item__icon" src="/assets/icons/cat-{{item.icon}}.png" mode="aspectFit" />
+      <text class="cat-item__label">{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 推荐服务 -->
+  <view class="section-title">
+    <text>大家都在用</text>
+  </view>
+  <view wx:if="{{services.length}}">
+    <view
+      wx:for="{{services}}"
+      wx:key="id"
+      class="card service-item"
+      data-id="{{item.id}}"
+      bindtap="handleServiceTap"
+    >
+      <image class="service-item__cover" src="{{item.coverUrl}}" mode="aspectFill" lazy-load />
+      <view class="service-item__body">
+        <text class="service-item__name text-ellipsis">{{item.name}}</text>
+        <text class="service-item__org text-tertiary text-ellipsis">{{item.orgName}}</text>
+        <view class="flex-between">
+          <text class="service-item__price">{{item.priceText}}</text>
+          <text class="text-tertiary">已服务 {{item.soldCount}} 次</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <empty-state
+    wx:else
+    type="{{loadFailed ? 'network' : 'empty'}}"
+    title="{{loadFailed ? '暂时加载失败' : '正在为您准备服务'}}"
+    description="{{loadFailed ? '请检查网络后重试' : '服务内容马上就来'}}"
+    actionText="{{loadFailed ? '重新加载' : ''}}"
+    bind:action="handleRetry"
+  />
+
+  <!-- 最近订单 -->
+  <block wx:if="{{orders.length}}">
+    <view class="section-title">
+      <text>最近订单</text>
+      <text class="section-title__more" bindtap="handleMoreOrder">全部订单</text>
+    </view>
+    <view
+      wx:for="{{orders}}"
+      wx:key="orderId"
+      class="card order-item"
+      data-id="{{item.orderId}}"
+      bindtap="handleOrderTap"
+    >
+      <view class="flex-between">
+        <text class="order-item__name text-ellipsis">{{item.serviceName}}</text>
+        <text class="order-item__status">{{item.statusLabel}}</text>
+      </view>
+      <text class="text-tertiary">上门时间 {{item.appointmentText}}</text>
+      <text class="order-item__amount">{{item.amountText}}</text>
+    </view>
+  </block>
+
+  <!-- 客服入口：常驻底部，所有角色可见 -->
+  <view class="hotline" bindtap="handleHotline">
+    <text class="hotline__text">客服热线 {{hotline}}</text>
+  </view>
+</view>

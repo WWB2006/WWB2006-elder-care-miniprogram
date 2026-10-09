@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "服务大厅",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "empty-state": "/components/empty-state/index",
+    "icon": "/components/icon/index"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "运营看板",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/index"
+  }
+}

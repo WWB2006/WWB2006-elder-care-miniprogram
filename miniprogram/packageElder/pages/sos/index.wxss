@@ -1,0 +1,148 @@
+.sos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-height: 100vh;
+  padding-bottom: calc(var(--space-xl) + env(safe-area-inset-bottom));
+}
+
+/* 状态区：高对比，任何阶段都要有明确文字 */
+.sos__status {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-lg);
+  background-color: var(--color-bg-card);
+  border-left: 10rpx solid var(--color-text-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.sos__status--calling {
+  border-left-color: var(--color-warning);
+}
+
+.sos__status--accepted {
+  border-left-color: var(--color-success);
+}
+
+.sos__status--fallback {
+  border-left-color: var(--color-danger);
+}
+
+.sos__status-text {
+  font-size: var(--font-size-title);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.sos__status-hint {
+  font-size: var(--font-size-caption);
+  color: var(--color-warning);
+}
+
+.sos__status-sub {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+}
+
+.sos__retry {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--size-button-lg);
+  background-color: var(--color-primary-light);
+  border-radius: var(--radius-md);
+}
+
+.sos__retry-text {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text-link);
+}
+
+.sos__fallback {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.sos__fallback-title {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}
+
+.sos__fallback-row {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.sos__fallback-btn {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--size-button-lg);
+  font-size: var(--font-size-title);
+  font-weight: 700;
+  border-radius: var(--radius-md);
+}
+
+.sos__fallback-btn--primary {
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
+}
+
+.sos__fallback-btn--danger {
+  color: var(--color-text-inverse);
+  background-color: var(--color-danger);
+}
+
+.sos__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.sos__contacts-title {
+  font-size: var(--font-size-title);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.sos__contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 120rpx;
+  padding: 0 var(--space-lg);
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.sos__contact--hover {
+  background-color: var(--color-bg-page);
+}
+
+.sos__contact-info {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+
+.sos__contact-name {
+  font-size: var(--font-size-title);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.sos__contact-relation {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-tertiary);
+}
+
+.sos__contact-action {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-primary);
+}
