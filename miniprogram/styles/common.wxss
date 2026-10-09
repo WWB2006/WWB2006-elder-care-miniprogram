@@ -1,0 +1,183 @@
+/**
+ * 通用原子类与骨架类。
+ * 只放"跨页面复用的结构性样式"，任何带业务语义的样式（如订单卡片）留在组件内。
+ */
+
+/* 页面容器：统一左右留白 + 底部为自定义 tabBar 预留高度 */
+.page-root {
+  min-height: 100vh;
+  padding: var(--space-page);
+  padding-bottom: calc(var(--tabbar-height) + var(--space-lg) + env(safe-area-inset-bottom));
+  background-color: var(--color-bg-page);
+}
+
+.page-root--no-tabbar {
+  padding-bottom: calc(var(--space-xl) + env(safe-area-inset-bottom));
+}
+
+/* 卡片 */
+.card {
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.card--flat {
+  box-shadow: none;
+  border: 2rpx solid var(--color-border);
+}
+
+/* 标题 */
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: var(--space-lg) 0 var(--space-md);
+  font-size: var(--font-size-title);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.section-title__more {
+  font-size: var(--font-size-body);
+  font-weight: 400;
+  color: var(--color-text-link);
+}
+
+/* 文本 */
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-tertiary {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-caption);
+}
+
+.text-danger {
+  color: var(--color-danger);
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* 布局 */
+.flex-row {
+  display: flex;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+}
+
+.divider {
+  height: 2rpx;
+  margin: var(--space-md) 0;
+  background-color: var(--color-border);
+}
+
+/* 可点击区域：保证最小触控尺寸，避免老人误触或点不中 */
+.tap-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--size-touch-min);
+}
+
+/* 按钮：主按钮 / 次按钮 / 危险按钮 */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--size-button-lg);
+  padding: 0 var(--space-lg);
+  font-size: var(--font-size-title);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+}
+
+.btn::after {
+  border: none;
+}
+
+.btn--primary {
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
+}
+
+.btn--primary:active {
+  background-color: var(--color-primary-dark);
+}
+
+.btn--ghost {
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.btn--danger {
+  color: var(--color-text-inverse);
+  background-color: var(--color-danger);
+}
+
+.btn--disabled {
+  color: var(--color-text-tertiary);
+  background-color: var(--color-border);
+}
+
+/* 骨架屏：老人端弱网下优先展示结构，避免"白屏焦虑" */
+.skeleton {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-skeleton-base) 25%,
+    var(--color-skeleton-highlight) 37%,
+    var(--color-skeleton-base) 63%
+  );
+  background-size: 400% 100%;
+  border-radius: var(--radius-sm);
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+/* 安全区 */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}

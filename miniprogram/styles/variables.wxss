@@ -1,0 +1,71 @@
+/**
+ * 设计令牌（Design Token）。
+ * 硬性规则：
+ * 1. 业务样式一律引用 var(--*)，禁止硬编码色值与字号（stylelint 已开启 color-no-hex）；
+ * 2. 触控区最小 88rpx（约 44pt），老人端主要按钮建议 112rpx 高；
+ * 3. 正文对比度不低于 4.5:1，指标数字与大标题不低于 7:1。
+ */
+page {
+  /* ---------- 颜色：主色采用医疗蓝，传达稳定与信任 ---------- */
+  --color-primary: #1e5aa8;
+  --color-primary-dark: #164b8c;
+  --color-primary-light: #e8f0fb;
+  --color-accent: #ff7a00;
+
+  /* 语义色：SOS 使用最高饱和度红，且必须配文字，不能只靠颜色传达 */
+  --color-danger: #d93026;
+  --color-danger-dark: #b0241c;
+  --color-warning: #e6a23c;
+  --color-success: #1f8a4c;
+  --color-info: #5a6270;
+
+  /* 文本层级 */
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #5a6270;
+  --color-text-tertiary: #8a94a6;
+  --color-text-inverse: #fff;
+  --color-text-link: #1e5aa8;
+
+  /* 背景与描边 */
+  --color-bg-page: #f5f7fa;
+  --color-bg-card: #fff;
+  --color-bg-mask: rgba(0, 0, 0, 0.5);
+  --color-border: #e8ecf2;
+  --color-border-strong: #d4dae5;
+
+  /* 骨架屏底色（原先硬编码在 common.wxss 里，违反"禁止硬编码色值"约定） */
+  --color-skeleton-base: #eef1f6;
+  --color-skeleton-highlight: #f7f9fc;
+
+  /* ---------- 字体：正文基准 32rpx，老人端由 .elder-mode 覆盖到 40rpx ---------- */
+  --font-size-caption: 24rpx;
+  --font-size-body: 32rpx;
+  --font-size-title: 36rpx;
+  --font-size-heading: 44rpx;
+  --font-size-display: 56rpx;
+  --line-height-body: 1.6;
+  --line-height-tight: 1.35;
+
+  /* ---------- 间距 ---------- */
+  --space-xs: 8rpx;
+  --space-sm: 16rpx;
+  --space-md: 24rpx;
+  --space-lg: 32rpx;
+  --space-xl: 48rpx;
+  --space-page: 32rpx;
+
+  /* ---------- 圆角 / 阴影 / 描边 ---------- */
+  --radius-sm: 8rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 24rpx;
+  --radius-pill: 999rpx;
+  --shadow-card: 0 4rpx 16rpx rgba(30, 90, 168, 0.08);
+  --shadow-float: 0 8rpx 24rpx rgba(26, 26, 26, 0.12);
+
+  /* ---------- 组件尺寸 ---------- */
+  --size-touch-min: 88rpx;
+  --size-button-lg: 112rpx;
+  --size-icon: 48rpx;
+  --size-avatar: 96rpx;
+  --tabbar-height: 112rpx;
+}

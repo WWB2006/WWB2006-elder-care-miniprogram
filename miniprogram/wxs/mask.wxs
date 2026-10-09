@@ -1,0 +1,43 @@
+/**
+ * 脱敏（WXML 内联用）。
+ * 后端已做脱敏，这里再兜一层：任何情况下都不能把完整手机号渲染到页面上，
+ * 因为截图、投屏、录屏都会把它带出去。
+ */
+var maskPhone = function (phone) {
+  if (!phone) {
+    return ''
+  }
+  var text = String(phone)
+  if (text.length < 7) {
+    return text
+  }
+  return text.substring(0, 3) + '****' + text.substring(text.length - 4)
+}
+
+var maskName = function (name) {
+  if (!name) {
+    return ''
+  }
+  var text = String(name)
+  if (text.length <= 1) {
+    return text
+  }
+  return text.substring(0, 1) + '**'
+}
+
+var maskAddress = function (address) {
+  if (!address) {
+    return ''
+  }
+  var text = String(address)
+  if (text.length <= 6) {
+    return text
+  }
+  return text.substring(0, 6) + '***'
+}
+
+module.exports = {
+  maskPhone: maskPhone,
+  maskName: maskName,
+  maskAddress: maskAddress,
+}

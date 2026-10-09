@@ -1,0 +1,25 @@
+/**
+ * 金额格式化（WXML 内联用）。
+ * 后端统一以「分」为单位传输；WXML 里直接写 `{{cents / 100}}` 会出现浮点误差
+ * （如 0.1 + 0.2 类问题），且无法补零，因此统一走 WXS。
+ */
+var formatMoney = function (cents) {
+  var value = Number(cents)
+  if (isNaN(value)) {
+    value = 0
+  }
+  return '¥' + (value / 100).toFixed(2)
+}
+
+var formatMoneyPlain = function (cents) {
+  var value = Number(cents)
+  if (isNaN(value)) {
+    value = 0
+  }
+  return (value / 100).toFixed(2)
+}
+
+module.exports = {
+  formatMoney: formatMoney,
+  formatMoneyPlain: formatMoneyPlain,
+}

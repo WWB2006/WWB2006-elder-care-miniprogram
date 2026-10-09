@@ -1,0 +1,39 @@
+/**
+ * 适老模式（关怀模式）。
+ * 使用方式：页面根节点绑定 class（开启时追加 elder-mode），变量在该子树内被覆盖，
+ * 组件无需写两套样式，只需引用变量即可自动适配。
+ *
+ * 规范依据（见 docs/设计方案.md 第 6.6 节）：
+ * - 正文 ≥ 40rpx，行高 ≥ 1.6，主按钮 ≥ 112rpx；
+ * - 一屏只放一个主要任务，页面层级不超过 3 层；
+ * - 所有图标必须配文字，禁止仅靠颜色区分状态。
+ */
+.elder-mode {
+  --font-size-caption: 30rpx;
+  --font-size-body: 40rpx;
+  --font-size-title: 44rpx;
+  --font-size-heading: 52rpx;
+  --font-size-display: 68rpx;
+  --line-height-body: 1.7;
+
+  --space-page: 40rpx;
+  --space-md: 32rpx;
+  --space-lg: 40rpx;
+
+  --size-button-lg: 128rpx;
+  --size-touch-min: 104rpx;
+  --size-icon: 56rpx;
+  --tabbar-height: 132rpx;
+}
+
+/* 适老模式下的列表项：更大的分隔、更少的干扰信息 */
+.elder-mode .card {
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  border-radius: var(--radius-lg);
+}
+
+/* 弱化次要信息，但保留可读性（不低于最小字号） */
+.elder-mode .text-tertiary {
+  color: var(--color-text-secondary);
+}

@@ -1,0 +1,62 @@
+/**
+ * 订单状态展示映射（WXML 内联用）。
+ * 状态文案集中在 config/constant.ts 的 ORDER_STATUS_DICT，但 WXML 无法直接读 TS 常量，
+ * 因此这里保留一份 WXS 副本。**新增状态时两处都要改**，单测里会做一致性校验
+ * （见 tests/unit/wxs-status.test.ts），避免悄悄漂移。
+ */
+var LABELS = {
+  PENDING_PAY: '待支付',
+  PENDING_DISPATCH: '待派单',
+  DISPATCHED: '待接单',
+  ACCEPTED: '待上门',
+  IN_SERVICE: '服务中',
+  PENDING_CONFIRM: '待确认',
+  COMPLETED: '已完成',
+  CANCELED: '已取消',
+  REFUNDED: '已退款',
+}
+
+/** 语义色名（对应 WXSS 里的 class 后缀，不直接输出色值，避免绕过设计令牌） */
+var TONES = {
+  PENDING_PAY: 'warning',
+  PENDING_DISPATCH: 'warning',
+  DISPATCHED: 'warning',
+  ACCEPTED: 'primary',
+  IN_SERVICE: 'primary',
+  PENDING_CONFIRM: 'primary',
+  COMPLETED: 'success',
+  CANCELED: 'muted',
+  REFUNDED: 'muted',
+}
+
+var label = function (status) {
+  return LABELS[status] || '未知状态'
+}
+
+var tone = function (status) {
+  return TONES[status] || 'muted'
+}
+
+/** 老人端需要一句话解释，不能只给一个状态词 */
+var desc = function (status) {
+  var map = {
+    PENDING_PAY: '订单已提交，请尽快完成支付',
+    PENDING_DISPATCH: '机构正在安排服务人员',
+    DISPATCHED: '已指定服务人员，等待其确认',
+    ACCEPTED: '服务人员已接单，将按时上门',
+    IN_SERVICE: '服务人员已到达并开始服务',
+    PENDING_CONFIRM: '服务已完成，请确认本次服务',
+    COMPLETED: '本次服务已完成，感谢您的信任',
+    CANCELED: '订单已取消',
+    REFUNDED: '款项已原路退回',
+  }
+  return map[status] || ''
+}
+
+module.exports = {
+  label: label,
+  tone: tone,
+  desc: desc,
+  LABELS: LABELS,
+  TONES: TONES,
+}
